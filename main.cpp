@@ -16,7 +16,8 @@ bool switchClick;
 DWORD WINAPI EventListener(LPVOID)
 {
     INPUT Input[2];
-
+    ZeroMemory(&Input, sizeof(Input));
+    
     Input[0].type          = INPUT_MOUSE;
     Input[0].mi.dwFlags    = MOUSEEVENTF_LEFTDOWN;
 
@@ -61,7 +62,7 @@ int main(int argc, char **argv) {
     DefaultHook     = SetWindowsHookEx(WH_MOUSE_LL, LowLevelMouseProc, NULL, NULL);
     ActionThread    = CreateThread(NULL, NULL, EventListener, NULL, NULL, NULL);
 
-    if(!DefaultHook)
+    if (!DefaultHook)
         return 0;
 
     while (GetMessage(&ThreadMsg, NULL, NULL, NULL)) {}
