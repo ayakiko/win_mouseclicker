@@ -5,7 +5,7 @@
 #include <immintrin.h>
 
 DWORD WINAPI     EventListener(LPVOID);
-LRESULT CALLBACK LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK LowLevelMouseProc(INT, WPARAM, LPARAM);
 
 HHOOK   DefaultHook;
 HANDLE  ActionThread;
@@ -37,7 +37,7 @@ DWORD WINAPI EventListener(LPVOID)
 }
 
 LRESULT CALLBACK LowLevelMouseProc(
-    int nCode,
+    INT nCode,
     WPARAM wParam,
     LPARAM lParam
 )
@@ -48,8 +48,8 @@ LRESULT CALLBACK LowLevelMouseProc(
     LPMSLLHOOKSTRUCT MouseHookStruct = reinterpret_cast<LPMSLLHOOKSTRUCT>(lParam);
 
     /*
-        131072  is X1 mouse button
-        65536   is X2 mouse button
+        0x20000  is X1 mouse button
+        0x10000  is X2 mouse button
     */
 
     if (MouseHookStruct->mouseData == 131072)
