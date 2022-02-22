@@ -48,8 +48,8 @@ LRESULT CALLBACK LowLevelMouseProc(
     LPMSLLHOOKSTRUCT MouseHookStruct = reinterpret_cast<LPMSLLHOOKSTRUCT>(lParam);
 
     /*
-        0x20000  is X1 mouse button
-        0x10000  is X2 mouse button
+        0x20000 131072  is X1 mouse button
+        0x10000 65536   is X2 mouse button
     */
 
     if (MouseHookStruct->mouseData == 131072)
